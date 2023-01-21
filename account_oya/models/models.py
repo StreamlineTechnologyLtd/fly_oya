@@ -2,8 +2,8 @@
 
 from odoo import models, fields, api
 
-class AccountAccountTemplate(models.Model):
-    _inherit = ["account.account.template"]
+class AccountAccount(models.Model):
+    _inherit = ["account.account"]
 
 
     account_type = fields.Selection(
@@ -22,6 +22,7 @@ class AccountAccountTemplate(models.Model):
             ("equity_unaffected", "Current Year Earnings"),
             ("income", "Revenue"),
             ("income_other", "Other Revenue"),
+            ("test_account", "Test Account"),
             ("expense", "Expenses"),
             ("expense_depreciation", "Depreciation"),
             ("expense_direct_cost", "Cost of Revenue"),
@@ -31,7 +32,18 @@ class AccountAccountTemplate(models.Model):
         help="These types are defined according to your country. The type contains more information "\
         "about the account and its specificities."
     )
-
+    internal_group = fields.Selection(
+        selection=[
+            ('equity', 'Equity'),
+            ('asset', 'Asset'),
+            ('liability', 'Liability'),
+            ('income', 'Income'),
+            ('expense', 'Expense'),
+            ('test', 'Test'),
+            ('off_balance', 'Off Balance'),
+        ],
+        string="Internal Group", readonly=True, compute="_compute_internal_group", store=True
+    )
 
 # class account_oya(models.Model):
 #     _name = 'account_oya.account_oya'
