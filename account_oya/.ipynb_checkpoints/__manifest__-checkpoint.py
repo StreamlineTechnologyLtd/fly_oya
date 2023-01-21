@@ -32,7 +32,7 @@
         'web.assets_backend': [
             ('replace', 'account/static/src/js/legacy_account_selection.js',
              'account_oya/static/src/js/legacy_account_selection.js'),
-        ],}
+        ],},
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
