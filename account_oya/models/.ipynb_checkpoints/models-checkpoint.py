@@ -32,18 +32,7 @@ class AccountAccount(models.Model):
         help="These types are defined according to your country. The type contains more information "\
         "about the account and its specificities."
     )
-    internal_group = fields.Selection(
-        selection=[
-            ('equity', 'Equity'),
-            ('asset', 'Asset'),
-            ('liability', 'Liability'),
-            ('income', 'Income'),
-            ('expense', 'Expense'),
-            ('test', 'Test'),
-            ('off_balance', 'Off Balance'),
-        ],
-        string="Internal Group", readonly=True, compute="_compute_internal_group", store=True
-    )
+    internal_group = fields.Selection(selection_add=[('test', 'Test')])
 
 # class account_oya(models.Model):
 #     _name = 'account_oya.account_oya'
