@@ -16,7 +16,7 @@ export const HierarchySelection = FieldSelection.extend({
             {name: _t('Equity'), children: this.values.filter(x => x[0] && x[0].startsWith('equity'))},
             {name: _t('Profit & Loss')},
             {name: _t('Income'), children: this.values.filter(x => x[0] && x[0].startsWith('income'))},
-            {name: _t('Test'), children: this.values.filter(x => x[0] && x[0].startsWith('test'))},
+            {name: _t('Cost Of Revenue'), children: this.values.filter(x => x[0] && x[0].startsWith('cor'))},
             {name: _t('Expense'), children: this.values.filter(x => x[0] && x[0].startsWith('expense'))},
             {name: _t('Other'), children: this.values.filter(x => x[0] && x[0] == 'off_balance')},
         ];

@@ -13,7 +13,7 @@ export class AccountTypeSelection extends SelectionField {
             { name: this.env._t('Equity'), children: opts.filter(x => x[0] && x[0].startsWith('equity')) },
             { name: this.env._t('Profit & Loss') },
             { name: this.env._t('Income'), children: opts.filter(x => x[0] && x[0].startsWith('income')) },
-            { name: this.env._t('Test'), children: opts.filter(x => x[0] && x[0].startsWith('test')) },
+            { name: this.env._t('Cost Of Revenue'), children: opts.filter(x => x[0] && x[0].startsWith('cor')) },
             { name: this.env._t('Expense'), children: opts.filter(x => x[0] && x[0].startsWith('expense')) },
             { name: this.env._t('Other'), children: opts.filter(x => x[0] && x[0] === 'off_balance') },
         ];
