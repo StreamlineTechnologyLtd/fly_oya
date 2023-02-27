@@ -22,9 +22,26 @@ class AccountAccount(models.Model):
             ("equity_unaffected", "Current Year Earnings"),
             ("income", "Revenue"),
             ("income_other", "Other Revenue"),
-            ("test_account", "Test Account"),
+            ("income_cr", "Cargo Revenue"),
+            ("income_otr", "Other Transport Revenues"),
+            ("income_ntr", "Non-Transport Revenue"),
+            ("cor_ac", "Aircraft Cost"),
+            ("cor_foc", "Flight Operations Cost"),
+            ("cor_prc", "Passenger Related Cost"),
+            ("cor_cc", "Crew Cost"),
+            ("cor_cgc", "Cargo Cost"),
+            ("cor_se", "Sales Expenses"),
             ("expense", "Expenses"),
             ("expense_depreciation", "Depreciation"),
+            ('expense_tc','Transport Cost'),
+('expense_lr','Lease and Rent'),
+('expense_oe','Office Expenses'),
+('expense_hse','Health Safety & Environment'),
+('expense_ite','IT Expenses'),
+('expense_depreciation','Depreciation'),
+('expense_plf','Professional and Legal Fees'),
+('expense_fe','Financial Expenses'),
+('expense_tax','Tax'),
             ("expense_direct_cost", "Cost of Revenue"),
             ("off_balance", "Off-Balance Sheet"),
         ],
@@ -32,7 +49,7 @@ class AccountAccount(models.Model):
         help="These types are defined according to your country. The type contains more information "\
         "about the account and its specificities."
     )
-    internal_group = fields.Selection(selection_add=[('test', 'Test')])
+    internal_group = fields.Selection(selection_add=[('cor', 'Cost Of Revenue')])
 
 # class account_oya(models.Model):
 #     _name = 'account_oya.account_oya'
