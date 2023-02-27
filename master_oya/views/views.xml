@@ -1,0 +1,96 @@
+<odoo>
+  <data>
+    <menuitem name="Master Oya"
+      id="master_oya.menu_root"
+      web_icon="master_oya,static/description/rocket.png"
+      sequence="70" />
+
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="master_oya.cost_center_list">
+      <field name="name">cost.center.list</field>
+      <field name="model">cost.center</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" />
+          <field name="code" />
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="master_oya.cost_center_action_window">
+      <field name="name">Cost Centers</field>
+      <field name="res_model">cost.center</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[('children_ids', '=', False)]</field>
+    </record>
+    <record id="view_cost_center_form" model="ir.ui.view">
+      <field name="name">cost.center.form</field>
+      <field name="model">cost.center</field>
+      <field name="arch" type="xml">
+        <form string="Cost Centers">
+          <sheet>
+            <div class="oe_button_box" name="button_box">
+              <button name="action_view_children_cost_centers" type="object" class="oe_stat_button"
+                icon="fa-bars">
+                <field string="Sub Cost Centers" name="children_count" widget="statinfo" />
+              </button>
+            </div>
+            <div class="oe_title">
+              <h1>
+                <field name="name" />
+              </h1>
+            </div>
+            <group>
+              <group>
+                <field name="parent_id" />
+                <field name="code" />
+                <field name="color" widget="color_picker" />
+              </group>
+              <group>
+                <field name="company_id" groups="base.group_multi_company" />
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <menuitem name="Cost Center" id="master_oya.cost_center" parent="master_oya.menu_root"
+      action="master_oya.cost_center_action_window" />
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="master_oya.action_server">
+      <field name="name">master_oya server</field>
+      <field name="model_id" ref="model_master_oya_master_oya"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="master_oya" id="master_oya.menu_root"/>
+-->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="master_oya.menu_1" parent="master_oya.menu_root"/>
+    <menuitem name="Menu 2" id="master_oya.menu_2" parent="master_oya.menu_root"/>
+-->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="master_oya.menu_1_list" parent="master_oya.menu_1"
+              action="master_oya.action_window"/>
+    <menuitem name="Server to list" id="master_oya" parent="master_oya.menu_2"
+              action="master_oya.action_server"/>
+-->
+  </data>
+</odoo>
