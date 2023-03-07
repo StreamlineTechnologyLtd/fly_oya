@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record id='dimensions_account_asset' model="ir.ui.view">
+            <field name="name">dimensions.account.asset</field>
+            <field name="inherit_id" ref="account_asset.view_account_asset_form" />
+            <field name="model">account.asset</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='analytic_distribution']" position="after">
+                    <field name="cost_center_id" optional="show" />
+                    <field name="department_id" optional="show" />
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

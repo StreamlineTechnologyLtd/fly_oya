@@ -1,0 +1,106 @@
+<odoo>
+  <data>
+     <record id="inherited_employee_form" model="ir.ui.view">
+    <field name="name">inherited_hr.employee.form</field>
+    <field name="model">hr.employee</field>
+    <field name="inherit_id" ref="hr.view_employee_form"/>
+    <field name="arch" type="xml">
+    <xpath expr="//field[@name='job_id']" position="after">
+    <field name="housing_allowance" />
+  </xpath>
+        </field>     
+     </record>
+    
+         
+<record id="inherited_hr_payslip_form" model="ir.ui.view">
+    <field name="name">inherited_hr.payslip.form</field>
+    <field name="model">hr.payslip</field>
+    <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+    <field name="arch" type="xml">
+    <xpath expr="//field[@name='payslip_run_id']" position="after">
+    <field name="sto"/>
+    <field name="uto"/>
+    <field name="bouns_over_time"/>
+    </xpath>
+    </field>
+    </record> 
+         
+  
+         
+         
+         <record id="inherited_hr_contract_form" model="ir.ui.view">
+    <field name="name">inherited_hr.contract.form</field>
+    <field name="model">hr.contract</field>
+    <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+    <field name="arch" type="xml">
+    <xpath expr="//group[@name='yearly_advantages']" position="inside">
+    <field name="un_taxble_wage"/>
+    <field name="new_wage"/>
+<!--     <field name="new_wage"/> -->
+    </xpath>
+    </field>
+    </record> 
+      
+      
+      <record id="res_config_settings_view_form_tax" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.hr.payroll_tax</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="hr_payroll.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            
+            
+            <xpath expr="//div[@id='hr_payroll_accountant']" position="after">
+                <h2>Taxes</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-lg-6 col-12 o_setting_box">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <label for="deferred_time_off_manager" string="Taxes"/>
+                            <div class="text-muted">
+Libyan Taxes
+                            </div>
+                            <div class="content-group">
+                                <div>
+                        <label for="solidarity" string="solidarity" class="col-2 o_light_label"/>
+                        <field name="solidarity"/>
+                    <div >
+                        <label for="symbiosis" string="symbiosis" class="col-2 o_light_label"/>
+                        <field name="symbiosis"/>
+                    <div >
+                        <label for="employer" string="employer" class="col-2 o_light_label"/>
+                        <field name="employer"/>
+                    <div >
+                        <label for="jihad" string="jihad" class="col-2 o_light_label"/>
+                        <field name="jihad"/>
+                    <div >
+                        <label for="dinar" string="dinar" class="col-2 o_light_label"/>
+                        <field name="dinar"/>
+                    <div >
+                        <label for="subsidies" string="subsidies" class="col-2 o_light_label"/>
+                        <field name="subsidies"/>
+                    </div>
+                        <div >
+                        <label for="guarantee" string="guarantee" class="col-2 o_light_label"/>
+                        <field name="guarantee"/>
+                    </div>
+                    <div >
+                        <label for="syndicate" string="syndicate" class="col-2 o_light_label"/>
+                        <field name="syndicate"/>
+                    </div>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </xpath>
+  
+
+            </field>
+        </record> 
+      
+  </data>
+</odoo>
