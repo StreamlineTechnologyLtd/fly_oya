@@ -1,16 +1,6 @@
+from odoo import api, fields, Command, models, _
 
-from odoo import models, fields, api
-from odoo.osv import expression
 
-class AccountMoveLine(models.Model):
-    
-    _inherit = ["account.move.line"]
-    
-    cost_center_id = fields.Many2one(
-        comodel_name='cost.center',string='Cost Center', store=True,index=True,auto_join=True,tracking=True, domain = [("children_ids","=",False)])
-    department_id = fields.Many2one('hr.department', string = 'Department', store= True, index=True,auto_join=True,tracking=True, domain = [("child_ids","=",False)])
-    
-    
 class Department(models.Model):
     _inherit = ["hr.department"]
     _rec_name = 'name'

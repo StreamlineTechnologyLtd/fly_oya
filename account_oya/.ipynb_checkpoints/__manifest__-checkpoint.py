@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','account', 'master_oya', 'account_asset'],
+    'depends': ['base','account', 'master_oya', 'account_asset', 'sale', 'purchase', 'hr_expense'],
 
     # always loaded
     'data': [
