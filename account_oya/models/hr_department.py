@@ -1,5 +1,7 @@
 from odoo import api, fields, Command, models, _
-
+from collections import defaultdict
+from odoo.osv import expression
+from random import randint
 
 class Department(models.Model):
     _inherit = ["hr.department"]

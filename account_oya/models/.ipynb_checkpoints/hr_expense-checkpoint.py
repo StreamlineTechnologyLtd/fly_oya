@@ -1,11 +1,40 @@
+import re
+from markupsafe import Markup
 from odoo import api, fields, Command, models, _
+from odoo.tools import float_round
+from odoo.exceptions import UserError, ValidationError
+from odoo.tools import email_split, float_is_zero, float_repr, float_compare, is_html_empty
+from odoo.tools.misc import clean_context, format_date
 
 class HrExpense(models.Model):
     _inherit = 'hr.expense'     
     
-    cost_center_id = fields.Many2one(
+        cost_center_id = fields.Many2one(
         comodel_name='cost.center',string='Cost Center', store=True,index=True,auto_join=True,tracking=True, domain = [("children_ids","=",False)])
     department_id = fields.Many2one('hr.department', string = 'Department', store= True, index=True,auto_join=True,tracking=True, domain = [("child_ids","=",False)])
+
+    
+    def _get_split_values(self):
+        self.ensure_one()
+        half_price = self.total_amount / 2
+        price_round_up = float_round(half_price, precision_digits=2, rounding_method='UP')
+        price_round_down = float_round(half_price, precision_digits=2, rounding_method='DOWN')
+
+        return [{
+            'name': self.name,
+            'product_id': self.product_id.id,
+            'total_amount': price,
+            'tax_ids': self.tax_ids.ids,
+            'currency_id': self.currency_id.id,
+            'company_id': self.company_id.id,
+            'analytic_distribution': self.analytic_distribution,
+            'cost_center_id': self.cost_center_id.id,
+            'department_id': self.department_id.id,
+            'employee_id': self.employee_id.id,
+            'expense_id': self.id,
+        } for price in [price_round_up, price_round_down]]
+    
+    
     
     def action_move_create(self):
         '''
@@ -61,21 +90,26 @@ class HrExpense(models.Model):
     
 
 class HrExpenseSplit(models.TransientModel):
-    _inherit = ['hr.expense.split']
-
+    _inherit = 'hr.expense.split'
+    
+    cost_center_id = fields.Many2one(
+        comodel_name='cost.center',string='Cost Center', store=True,index=True,auto_join=True,tracking=True, domain = [("children_ids","=",False)])
+    department_id = fields.Many2one('hr.department', string = 'Department', store= True, index=True,auto_join=True,tracking=True, domain = [("child_ids","=",False)])
+    
+    
     def default_get(self, fields):
-        result = super(HrExpenseSplit, self).default_get(fields)
+        result = super().default_get(fields)
         if 'expense_id' in result:
-            expense = self.env['hr.expense'].browse(result['expense_id'])
             result['cost_center_id'] = expense.cost_center_id
             result['department_id'] = expense.department_id
         return result
     
     
+    
     def _get_values(self):
-        result = super(HrExpenseSplit, self)._get_values()
-        result['cost_center_id'] = self.cost_center_id
-        result['department_id'] = self.department_id
-        
+        result = super()._get_values()
+        result['cost_center_id'] = self.cost_center_id.id
+        result['department_id'] = self.department_id.id
+
         return result
        

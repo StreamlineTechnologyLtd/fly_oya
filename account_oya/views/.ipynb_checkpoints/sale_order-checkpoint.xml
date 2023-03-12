@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record id='sale_order_form_extended_cost_center_department' model="ir.ui.view">
+            <field name="name">sale.order.form.extended.cost.center.department</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+                <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='analytic_distribution']" position="after">
+                    <field name="department_id" optional="hide"/>
+                    <field name="cost_center_id" optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

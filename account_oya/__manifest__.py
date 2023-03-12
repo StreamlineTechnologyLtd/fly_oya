@@ -28,7 +28,11 @@
         'views/views.xml',
         'views/templates.xml',
         'views/account_move_line.xml',
-        'views/account_asset.xml'
+        'views/account_asset.xml',
+        'views/sale_order.xml',
+        'views/purchase_order.xml',
+        'views/hr_expense.xml',
+        
     ],
     'assets': {
         'web.assets_backend': [

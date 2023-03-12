@@ -9,7 +9,6 @@
                     <field name="cost_center_id" optional="show" />
                     <field name="department_id" optional="show" />
                 </xpath>
-
             </field>
         </record>
 
