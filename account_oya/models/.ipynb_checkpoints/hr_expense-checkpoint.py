@@ -7,11 +7,11 @@ from odoo.tools import email_split, float_is_zero, float_repr, float_compare, is
 from odoo.tools.misc import clean_context, format_date
 
 class HrExpense(models.Model):
-    _inherit = 'hr.expense'     
-    
-        cost_center_id = fields.Many2one(
+    _inherit = 'hr.expense'
+    cost_center_id = fields.Many2one(
         comodel_name='cost.center',string='Cost Center', store=True,index=True,auto_join=True,tracking=True, domain = [("children_ids","=",False)])
-    department_id = fields.Many2one('hr.department', string = 'Department', store= True, index=True,auto_join=True,tracking=True, domain = [("child_ids","=",False)])
+    department_id = fields.Many2one('hr.department', string = 'Department', store= True, index=True,auto_join=True,tracking=True,
+                                    domain = [("child_ids","=",False)])
 
     
     def _get_split_values(self):
